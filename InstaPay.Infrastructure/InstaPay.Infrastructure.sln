@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36930.0 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstaPay.Infrastructure", "InstaPay.Infrastructure\InstaPay.Infrastructure.csproj", "{D2A6D1DE-0C00-422D-8347-0551B4D61ACA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D2A6D1DE-0C00-422D-8347-0551B4D61ACA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2A6D1DE-0C00-422D-8347-0551B4D61ACA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2A6D1DE-0C00-422D-8347-0551B4D61ACA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2A6D1DE-0C00-422D-8347-0551B4D61ACA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {290B3BC7-012C-4D3C-80DE-B9B1D7BD6241}
+	EndGlobalSection
+EndGlobal
