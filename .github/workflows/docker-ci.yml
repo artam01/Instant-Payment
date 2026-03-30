@@ -29,7 +29,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t $REGISTRY/$IMAGE_NAME:latest ./InstaPay.Api/InstaPay.Api
+          docker build -t $REGISTRY/$IMAGE_NAME:latest ./InstaPay.Api
 
       - name: Push Docker image
         run: |
