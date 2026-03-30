@@ -1,0 +1,49 @@
+name: Build and Deploy Docker to Azure Web App
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  REGISTRY: instapay.azurecr.io
+  IMAGE_NAME: instapay-api
+  WEBAPP_NAME: instantpayment
+  RESOURCE_GROUP: Insta_Pay
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Checkout repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2️⃣ Debug: list all files to confirm paths
+      - name: List all files in repo
+        run: ls -R
+
+      # 3️⃣ Login to Azure
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      # 4️⃣ Login to Azure Container Registry
+      - name: Login to Azure Container Registry
+        run: az acr login --name instapay
+
+      # 5️⃣ Build Docker image (full path)
+      - name: Build Docker image
+        run: docker build -f InstaPay.Api/InstaPay.Api/Dockerfile -t $REGISTRY/$IMAGE_NAME:latest InstaPay.Api/InstaPay.Api
+
+      # 6️⃣ Push Docker image
+      - name: Push Docker image
+        run: docker push $REGISTRY/$IMAGE_NAME:latest
+
+      # 7️⃣ Restart Azure Web App to pull latest image
+      - name: Restart Azure Web App
+        run: az webapp restart \
+          --name $WEBAPP_NAME \
+          --resource-group $RESOURCE_GROUP
