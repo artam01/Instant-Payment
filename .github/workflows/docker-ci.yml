@@ -29,7 +29,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          C:\Users\artam\source\repos\InstaPay\InstaPay.Api\InstaPay.Api\Dockerfile
+          docker build \-f ./InstaPay.Api/InstaPay.Api/Dockerfile \-t $REGISTRY/$IMAGE_NAME:latest \ ./InstaPay.Api/InstaPay.Api
 
       - name: Push Docker image
         run: |
