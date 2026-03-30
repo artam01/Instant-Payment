@@ -9,7 +9,7 @@ env:
   REGISTRY: instapay.azurecr.io
   IMAGE_NAME: instapay-api
   WEBAPP_NAME: instantpayment
-  RESOURCE_GROUP: ASP-InstaPay-9404
+  RESOURCE_GROUP: Insta_Pay
 
 jobs:
   build-and-deploy:
@@ -35,7 +35,7 @@ jobs:
         run: |
           docker push $REGISTRY/$IMAGE_NAME:latest
 
-      - name: Restart Web App (pull latest image)
+      - name: Restart Azure Web App (pull latest image)
         run: |
           az webapp restart \
             --name $WEBAPP_NAME \
