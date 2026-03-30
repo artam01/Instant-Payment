@@ -1,0 +1,42 @@
+name: Build and Deploy Docker to Azure Web App
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  REGISTRY: instapay.azurecr.io
+  IMAGE_NAME: instapay-api
+  WEBAPP_NAME: instantpayment
+  RESOURCE_GROUP: ASP-InstaPay-9404
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Login to Azure Container Registry
+        run: az acr login --name instapay
+
+      - name: Build Docker image
+        run: |
+          docker build -t $REGISTRY/$IMAGE_NAME:latest ./InstaPay.Api/InstaPay.Api
+
+      - name: Push Docker image
+        run: |
+          docker push $REGISTRY/$IMAGE_NAME:latest
+
+      - name: Restart Web App (pull latest image)
+        run: |
+          az webapp restart \
+            --name $WEBAPP_NAME \
+            --resource-group $RESOURCE_GROUP
